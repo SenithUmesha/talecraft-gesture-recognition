@@ -36,7 +36,9 @@ def process_image_route():
     if gesture_recognition_result.gestures:
         top_gesture = gesture_recognition_result.gestures[0][0]
         label = top_gesture.category_name
-        print("Detected Gesture Label:", label)
+        accuracy = top_gesture.score * 100
+        accuracy = "{:.2f}".format(accuracy)
+        print("Detected Gesture Label:", label, " with Accuracy:", accuracy, "%")
         return jsonify({'gesture': label}), 200
     else:
         print("No gesture detected.")
